@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="hotel.booking.model.User"/>
+        <mapping class="hotel.booking.model.Room"/>
+        <mapping class="hotel.booking.model.AdditionalService"/>
+        <mapping class="hotel.booking.model.Booking"/>
+        <mapping class="hotel.booking.model.BookingAdditionalService"/>
+    </session-factory>
+</hibernate-configuration>
