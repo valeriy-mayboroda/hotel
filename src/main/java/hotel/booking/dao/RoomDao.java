@@ -1,7 +1,6 @@
 package hotel.booking.dao;
 
 import hotel.booking.model.Room;
-
 import java.util.List;
 
 /**

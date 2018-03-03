@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class BookingAdditionalService {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "bookings_additional_services_id")
-    private int bookings_additional_services_id;
+    @Column (name = "id")
+    private int id;
 
     @Column (name = "additional_service_id")
     private int additional_service_id;

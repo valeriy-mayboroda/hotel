@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class AdditionalService {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "additional_service_id")
-    private int additional_service_id;
+    @Column (name = "id")
+    private int id;
 
     @Column (name = "name")
     private String name;

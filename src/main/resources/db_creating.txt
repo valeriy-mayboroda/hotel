@@ -1,52 +1,52 @@
 CREATE SCHEMA `hotel` ;
 
 CREATE TABLE `hotel`.`rooms` (
-  `room_id` INT(7) NOT NULL AUTO_INCREMENT,
+  `id` INT(7) NOT NULL AUTO_INCREMENT,
   `number` INT(7) NOT NULL,
   `category` VARCHAR(20) NOT NULL,
   `price` DOUBLE NOT NULL,
-  PRIMARY KEY (`room_id`),
-  UNIQUE INDEX `room_id_UNIQUE` (`room_id` ASC))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `hotel`.`additional_services` (
-  `additional_service_id` INT(7) NOT NULL AUTO_INCREMENT,
+  `id` INT(7) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) NOT NULL,
   `price` DOUBLE NOT NULL,
-  PRIMARY KEY (`additional_service_id`),
-  UNIQUE INDEX `additional_service_id_UNIQUE` (`additional_service_id` ASC))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `hotel`.`users` (
-  `user_id` INT(7) NOT NULL AUTO_INCREMENT,
+  `id` INT(7) NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `passwrod_confirmation` VARCHAR(45) NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `hotel`.`bookings` (
-  `booking_id` INT(7) NOT NULL AUTO_INCREMENT,
+  `id` INT(7) NOT NULL AUTO_INCREMENT,
   `user_id` INT(7) NOT NULL,
   `room_id` INT(7) NOT NULL,
   `date_start` DATE NOT NULL,
   `date_end` DATE NOT NULL,
-  PRIMARY KEY (`booking_id`),
-  UNIQUE INDEX `booking_id_UNIQUE` (`booking_id` ASC))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `hotel`.`bookings_additional_services` (
-  `bookings_additional_services_id` INT(7) NOT NULL AUTO_INCREMENT,
+  `id` INT(7) NOT NULL AUTO_INCREMENT,
   `additional_service_id` INT(7) NOT NULL,
   `quantity` INT(2) NOT NULL,
-  PRIMARY KEY (`bookings_additional_services_id`),
-  UNIQUE INDEX `bookings_additional_services_id_UNIQUE` (`bookings_additional_services_id` ASC))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

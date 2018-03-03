@@ -15,22 +15,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
+@RequestMapping("/rooms")
 public class RoomController {
     @Autowired(required = true)
     private RoomService roomService;
 
     public void setRoomService(RoomService roomService) {this.roomService = roomService;}
 
-    @RequestMapping(value = "/rooms", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String roomsList(Model model) {
         model.addAttribute("room", new Room());
         model.addAttribute("roomsList", roomService.getRooms()); //В rooms.jsp используем items=${roomsList} для вывода комнат
         return "rooms";
     }
 
-    @RequestMapping(value = "/rooms/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addRoom(@ModelAttribute("room") Room room) {
-        if (room.getRoom_id() == 0) {
+        if (room.getId() == 0) {
             this.roomService.addRoom(room);
         }
         else {
@@ -45,7 +46,7 @@ public class RoomController {
         return "redirect:/rooms";
     }
 
-    @RequestMapping("edit/{id}")
+    @RequestMapping("/edit/{id}")
     public String editRoom(@PathVariable("id") int id, Model model) {
         model.addAttribute("room", this.roomService.getRoomById(id));
         model.addAttribute("roomsList", this.roomService.getRooms());
