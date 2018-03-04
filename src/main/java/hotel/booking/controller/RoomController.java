@@ -26,7 +26,13 @@ public class RoomController {
     public String roomsList(Model model) {
         model.addAttribute("room", new Room());
         model.addAttribute("roomsList", roomService.getRooms()); //В rooms.jsp используем items=${roomsList} для вывода комнат
-        return "rooms";
+        return "rooms_view/rooms";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String getRoom(@PathVariable("id") int id, Model model) {
+        model.addAttribute("room", this.roomService.getRoomById(id));
+        return "rooms_view/roomsdata";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -50,6 +56,6 @@ public class RoomController {
     public String editRoom(@PathVariable("id") int id, Model model) {
         model.addAttribute("room", this.roomService.getRoomById(id));
         model.addAttribute("roomsList", this.roomService.getRooms());
-        return "rooms";
+        return "rooms_view/rooms";
     }
 }

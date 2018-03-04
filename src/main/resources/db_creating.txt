@@ -25,7 +25,7 @@ CREATE TABLE `hotel`.`users` (
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `passwrod_confirmation` VARCHAR(45) NULL,
+  `password_confirmation` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB

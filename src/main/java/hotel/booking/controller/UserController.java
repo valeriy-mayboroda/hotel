@@ -26,7 +26,13 @@ public class UserController {
     public String usersList(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("usersList", userService.getUsers()); //В users.jsp используем items=${usersList} для вывода пользователей
-        return "users";
+        return "users_view/users";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String getUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        return "users_view/usersdata";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -50,6 +56,6 @@ public class UserController {
     public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("usersList", this.userService.getUsers());
-        return "users";
+        return "users_view/users";
     }
 }

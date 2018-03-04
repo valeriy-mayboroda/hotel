@@ -64,7 +64,7 @@
                         <td><c:out value="${user.last_name}"/></td>
                         <td><c:out value="${user.email}"/></td>
                         <td><c:out value="${user.password}"/></td>
-                        <td><c:out value="${user.passwrod_confirmation}"/></td>
+                        <td><c:out value="${user.password_confirmation}"/></td>
                         <td><a href="<c:url value='/users/edit/${user.id}'/>">Edit</a></td>
                         <td><a href="<c:url value='/users/remove/${user.id}'/>">Delete</a></td>
                     </tr>
@@ -130,12 +130,12 @@
                     </tr>
                     <tr>
                          <td>
-                            <form:label path="passwrod_confirmation">
-                                <spring:message text="Passwrod_confirmation"/>
+                            <form:label path="password_confirmation">
+                                <spring:message text="Password_confirmation"/>
                             </form:label>
                          </td>
                          <td>
-                            <form:input path="passwrod_confirmation"/>
+                            <form:input path="password_confirmation"/>
                          </td>
                     </tr>
                     <tr>

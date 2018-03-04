@@ -26,8 +26,8 @@ public class User {
     @Column (name = "password")
     private String password;
 
-    @Column (name = "passwrod_confirmation")
-    private String passwrod_confirmation;
+    @Column (name = "password_confirmation")
+    private String password_confirmation;
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
@@ -44,6 +44,6 @@ public class User {
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
 
-    public String getPasswrod_confirmation() {return passwrod_confirmation;}
-    public void setPasswrod_confirmation(String passwrod_confirmation) {this.passwrod_confirmation = passwrod_confirmation;}
+    public String getPassword_confirmation() {return password_confirmation;}
+    public void setPassword_confirmation(String password_confirmation) {this.password_confirmation = password_confirmation;}
 }
