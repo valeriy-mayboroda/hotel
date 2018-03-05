@@ -54,6 +54,7 @@
                     <th width="50">PRICE</th>
                     <th width="30">EDIT</th>
                     <th width="30">DELETE</th>
+                    <th width="30">SHOW</th>
                 </tr>
                 <c:forEach items="${roomsList}" var="room">
                     <tr>
@@ -61,70 +62,15 @@
                         <td><c:out value="${room.number}"/></td>
                         <td><c:out value="${room.category}"/></td>
                         <td><c:out value="${room.price}"/></td>
-                        <td><a href="<c:url value='/rooms/edit/${room.id}'/>">Edit</a></td>
-                        <td><a href="<c:url value='/rooms/remove/${room.id}'/>">Delete</a></td>
+                        <td><a href="<c:url value='/rooms/${room.id}/edit'/>">Edit</a></td>
+                        <td><a href="<c:url value='/rooms/${room.id}/remove'/>">Delete</a></td>
+                        <td><a href="<c:url value='/rooms/${room.id}'/>">Show</a></td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
-        <h1>Add or edit room</h1>
-        <c:url var="addAction" value="/rooms/add"/>
-            <form:form action="${addAction}" commandName="room"><%-- commandName room будет отправлен формой и получен в (@ModelAttribute("room") Room room) --%>
-                <table>
-                    <c:if test="${!empty room.category}">
-                        <tr>
-                            <td>
-                                <form:label path="id">
-                                    <spring:message text="ID"/>
-                                </form:label>
-                            </td>
-                            <td>
-                                <form:input path="id" readonly="true" size="8" disabled="true"/>
-                                <form:hidden path="id"/>
-                            </td>
-                        </tr>
-                    </c:if>
-                    <tr>
-                        <td>
-                            <form:label path="number">
-                                <spring:message text="Number"/>
-                            </form:label>
-                        </td>
-                        <td>
-                            <form:input path="number"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form:label path="category">
-                                <spring:message text="Category"/>
-                            </form:label>
-                        </td>
-                        <td>
-                            <form:input path="category"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form:label path="price">
-                                <spring:message text="Price"/>
-                            </form:label>
-                        </td>
-                        <td>
-                             <form:input path="price"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <c:if test="${!empty room.category}">
-                                <input type="submit" value="<spring:message text="Edit room"/>"/>
-                            </c:if>
-                            <c:if test="${empty room.category}">
-                                <input type="submit" value="<spring:message text="Add room"/>"/>
-                            </c:if>
-                        </td>
-                    </tr>
-                </table>
-            </form:form>
+        <br/>
+            <a href="<c:url value='/rooms/create'/>">Click here to create a new room</a>
+        <br/>
     </body>
 </html>

@@ -23,7 +23,7 @@ public class RoomController {
     public void setRoomService(RoomService roomService) {this.roomService = roomService;}
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String roomsList(Model model) {
+    public String getRoomsList(Model model) {
         model.addAttribute("room", new Room());
         model.addAttribute("roomsList", roomService.getRooms()); //В rooms.jsp используем items=${roomsList} для вывода комнат
         return "rooms_view/rooms";
@@ -35,27 +35,37 @@ public class RoomController {
         return "rooms_view/roomsdata";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addRoom(@ModelAttribute("room") Room room) {
-        if (room.getId() == 0) {
-            this.roomService.addRoom(room);
-        }
-        else {
-            this.roomService.updateRoom(room);
-        }
+    @ModelAttribute("room")
+    public Room newRoom() {
+        return new Room();
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String getCreateRoom() {
+        return "rooms_view/roomscreate";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String addNewRoom(@ModelAttribute("room") Room room) {
+        this.roomService.addRoom(room);
         return "redirect:/rooms";
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+    public String getUpdateRoom(@PathVariable("id") int id, Model model) {
+        model.addAttribute("room", this.roomService.getRoomById(id));
+        return "rooms_view/roomsedit";
+    }
+
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+    public String updateRoom(@ModelAttribute("room") Room room) {
+        this.roomService.updateRoom(room);
+        return "redirect:/rooms";
+    }
+
+    @RequestMapping("/{id}/remove")
     public String removeRoom(@PathVariable("id") int id) {
         this.roomService.deleteRoom(id);
         return "redirect:/rooms";
-    }
-
-    @RequestMapping("/edit/{id}")
-    public String editRoom(@PathVariable("id") int id, Model model) {
-        model.addAttribute("room", this.roomService.getRoomById(id));
-        model.addAttribute("roomsList", this.roomService.getRooms());
-        return "rooms_view/rooms";
     }
 }

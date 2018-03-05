@@ -23,7 +23,7 @@ public class UserController {
     public void setUserService(UserService userService) {this.userService = userService;}
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String usersList(Model model) {
+    public String getUsersList(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("usersList", userService.getUsers()); //В users.jsp используем items=${usersList} для вывода пользователей
         return "users_view/users";
@@ -35,27 +35,37 @@ public class UserController {
         return "users_view/usersdata";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) {
-        if (user.getId() == 0) {
-            this.userService.addUser(user);
-        }
-        else {
-            this.userService.updateUser(user);
-        }
+    @ModelAttribute("user")
+    public User newUser() {
+        return new User();
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String getCreateUser() {
+        return "users_view/userscreate";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String addNewUser(@ModelAttribute("user") User user) {
+        this.userService.addUser(user);
         return "redirect:/users";
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+    public String getUpdateUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        return "users_view/usersedit";
+    }
+
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+    public String updateUser(@ModelAttribute("user") User user) {
+        this.userService.updateUser(user);
+        return "redirect:/users";
+    }
+
+    @RequestMapping(value = "/{id}/remove")
     public String removeUser(@PathVariable("id") int id) {
         this.userService.deleteUser(id);
         return "redirect:/users";
-    }
-
-    @RequestMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", this.userService.getUserById(id));
-        model.addAttribute("usersList", this.userService.getUsers());
-        return "users_view/users";
     }
 }
