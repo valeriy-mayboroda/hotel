@@ -12,5 +12,11 @@
         <br/>
         <a href="rooms">Click here to see the list of rooms</a>
         <br/>
+        <br/>
+        <a href="bookings">Click here to see the list of bookings</a>
+        <br/>
+        <br/>
+        <a href="additionalservices">Click here to see the list of additional services</a>
+        <br/>
     </body>
 </html>

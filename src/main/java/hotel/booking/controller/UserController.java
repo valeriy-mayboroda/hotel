@@ -25,14 +25,14 @@ public class UserController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getUsersList(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("usersList", userService.getUsers()); //В users.jsp используем items=${usersList} для вывода пользователей
-        return "users_view/users";
+        model.addAttribute("usersList", userService.getUsers());
+        return "users/index";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
-        return "users_view/usersdata";
+        return "users/show";
     }
 
     @ModelAttribute("user")
@@ -42,7 +42,7 @@ public class UserController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getCreateUser() {
-        return "users_view/userscreate";
+        return "users/new";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -54,16 +54,16 @@ public class UserController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String getUpdateUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
-        return "users_view/usersedit";
+        return "users/edit";
     }
 
-    @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String updateUser(@ModelAttribute("user") User user) {
         this.userService.updateUser(user);
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/{id}/remove")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String removeUser(@PathVariable("id") int id) {
         this.userService.deleteUser(id);
         return "redirect:/users";

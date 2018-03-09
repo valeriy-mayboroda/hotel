@@ -1,6 +1,7 @@
 package hotel.booking.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * Created by val on 01.03.2018.
@@ -25,4 +26,19 @@ public class Booking {
 
     @Column (name = "date_end")
     private java.sql.Date date_end;
+
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
+
+    public int getUser_id() {return user_id;}
+    public void setUser_id(int user_id) {this.user_id = user_id;}
+
+    public int getRoom_id() {return room_id;}
+    public void setRoom_id(int room_id) {this.room_id = room_id;}
+
+    public Date getDate_start() {return date_start;}
+    public void setDate_start(Date date_start) {this.date_start = date_start;}
+
+    public Date getDate_end() {return date_end;}
+    public void setDate_end(Date date_end) {this.date_end = date_end;}
 }

@@ -25,14 +25,14 @@ public class RoomController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getRoomsList(Model model) {
         model.addAttribute("room", new Room());
-        model.addAttribute("roomsList", roomService.getRooms()); //В rooms.jsp используем items=${roomsList} для вывода комнат
-        return "rooms_view/rooms";
+        model.addAttribute("roomsList", roomService.getRooms());
+        return "rooms/index";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getRoom(@PathVariable("id") int id, Model model) {
         model.addAttribute("room", this.roomService.getRoomById(id));
-        return "rooms_view/roomsdata";
+        return "rooms/show";
     }
 
     @ModelAttribute("room")
@@ -42,7 +42,7 @@ public class RoomController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getCreateRoom() {
-        return "rooms_view/roomscreate";
+        return "rooms/new";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -54,16 +54,16 @@ public class RoomController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String getUpdateRoom(@PathVariable("id") int id, Model model) {
         model.addAttribute("room", this.roomService.getRoomById(id));
-        return "rooms_view/roomsedit";
+        return "rooms/edit";
     }
 
-    @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String updateRoom(@ModelAttribute("room") Room room) {
         this.roomService.updateRoom(room);
         return "redirect:/rooms";
     }
 
-    @RequestMapping("/{id}/remove")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String removeRoom(@PathVariable("id") int id) {
         this.roomService.deleteRoom(id);
         return "redirect:/rooms";
