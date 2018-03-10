@@ -19,8 +19,8 @@
             <table class="tg">
                 <tr>
                     <th width="30">ID</th>
-                    <th width="60">USER_ID</th>
-                    <th width="60">ROOM_ID</th>
+                    <th width="60">USER_FIRST_NAME</th>
+                    <th width="60">ROOM_NUMBER</th>
                     <th width="60">DATE_START</th>
                     <th width="60">DATE_END</th>
                     <th width="30">EDIT</th>
@@ -30,8 +30,8 @@
                 <c:forEach items="${bookingsList}" var="booking">
                     <tr>
                         <td><c:out value="${booking.id}"/></td>
-                        <td><c:out value="${booking.user_id}"/></td>
-                        <td><c:out value="${booking.room_id}"/></td>
+                        <td><c:out value="${booking.user.first_name}"/></td>
+                        <td><c:out value="${booking.room.number}"/></td>
                         <td><c:out value="${booking.date_start}"/></td>
                         <td><c:out value="${booking.date_end}"/></td>
                         <td><a href="<c:url value='/bookings/${booking.id}/edit'/>">Edit</a></td>

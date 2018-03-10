@@ -38,7 +38,9 @@ CREATE TABLE `hotel`.`bookings` (
   `date_start` DATE NOT NULL,
   `date_end` DATE NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  FOREIGN KEY (user_id) REFERENCES hotel.users(id),
+  FOREIGN KEY (room_id) REFERENCES hotel.rooms(id))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

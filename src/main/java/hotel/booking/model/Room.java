@@ -1,6 +1,7 @@
 package hotel.booking.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by val on 28.02.2018.
@@ -23,6 +24,9 @@ public class Room {
     @Column (name = "price")
     private double price;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
+
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
 
@@ -34,4 +38,7 @@ public class Room {
 
     public double getPrice() {return price;}
     public void setPrice(double price) {this.price = price;}
+
+    public List<Booking> getBookings() {return bookings;}
+    public void setBookings(List<Booking> bookings) {this.bookings = bookings;}
 }

@@ -1,6 +1,7 @@
 package hotel.booking.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by val on 01.03.2018.
@@ -29,6 +30,9 @@ public class User {
     @Column (name = "password_confirmation")
     private String password_confirmation;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
+
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
 
@@ -46,4 +50,7 @@ public class User {
 
     public String getPassword_confirmation() {return password_confirmation;}
     public void setPassword_confirmation(String password_confirmation) {this.password_confirmation = password_confirmation;}
+
+    public List<Booking> getBookings() {return bookings;}
+    public void setBookings(List<Booking> bookings) {this.bookings = bookings;}
 }

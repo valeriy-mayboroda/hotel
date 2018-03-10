@@ -19,7 +19,7 @@
                             <spring:message text="User_id"/>
                         </td>
                         <td>
-                            <f:input path="user_id"/>
+                            <f:input path="user.id"/>
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +27,7 @@
                             <spring:message text="Room_id"/>
                         </td>
                         <td>
-                            <f:input path="room_id"/>
+                            <f:input path="room.id"/>
                         </td>
                     </tr>
                     <tr>
