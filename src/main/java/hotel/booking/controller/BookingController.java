@@ -2,6 +2,8 @@ package hotel.booking.controller;
 
 import hotel.booking.model.Booking;
 import hotel.booking.service.BookingService;
+import hotel.booking.service.RoomService;
+import hotel.booking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,17 @@ public class BookingController {
     @Autowired(required = true)
     private BookingService bookingService;
 
+    @Autowired(required = true)
+    private UserService userService;
+
+    @Autowired(required = true)
+    private RoomService roomService;
+
     public void setBookingService(BookingService bookingService) {this.bookingService = bookingService;}
+
+    public void setUserService(UserService userService) {this.userService = userService;}
+
+    public void setRoomService(RoomService roomService) {this.roomService = roomService;}
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getBookingsList(Model model) {
@@ -41,7 +53,9 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String getCreateBooking() {
+    public String getCreateBooking(Model model) {
+        model.addAttribute("usersList", userService.getUsers());
+        model.addAttribute("roomsList", roomService.getRooms());
         return "bookings/new";
     }
 

@@ -19,7 +19,9 @@
                             <spring:message text="User_id"/>
                         </td>
                         <td>
-                            <f:input path="user.id"/>
+                            <f:select path="user.id">
+                                <f:options items="${usersList}" itemValue="id" itemLabel="first_name"/>
+                            </f:select>
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +29,9 @@
                             <spring:message text="Room_id"/>
                         </td>
                         <td>
-                            <f:input path="room.id"/>
+                            <f:select path="room.id">
+                                <f:options items="${roomsList}" itemValue="id" itemLabel="number"/>
+                            </f:select>
                         </td>
                     </tr>
                     <tr>
