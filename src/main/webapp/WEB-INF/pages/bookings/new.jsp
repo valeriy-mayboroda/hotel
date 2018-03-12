@@ -19,7 +19,7 @@
                             <spring:message text="User_id"/>
                         </td>
                         <td>
-                            <f:select path="user.id">
+                            <f:select path="user_id">
                                 <f:options items="${usersList}" itemValue="id" itemLabel="first_name"/>
                             </f:select>
                         </td>
@@ -29,7 +29,7 @@
                             <spring:message text="Room_id"/>
                         </td>
                         <td>
-                            <f:select path="room.id">
+                            <f:select path="room_id">
                                 <f:options items="${roomsList}" itemValue="id" itemLabel="number"/>
                             </f:select>
                         </td>

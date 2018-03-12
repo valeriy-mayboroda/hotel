@@ -15,10 +15,10 @@ public class Booking {
     @Column (name = "id")
     private int id;
 
-    @Column (name = "user_id", insertable = false, updatable = false)
+    @Column (name = "user_id")
     private int user_id;
 
-    @Column (name = "room_id", insertable = false, updatable = false)
+    @Column (name = "room_id")
     private int room_id;
 
     @Column (name = "date_start")
@@ -28,11 +28,11 @@ public class Booking {
     private java.sql.Date date_end;
 
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn (name = "user_id")
+    @JoinColumn (name = "user_id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn (name = "room_id")
+    @JoinColumn (name = "room_id", insertable = false, updatable = false)
     private Room room;
 
     public int getId() {return id;}
