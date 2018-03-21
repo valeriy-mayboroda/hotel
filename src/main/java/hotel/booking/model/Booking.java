@@ -2,6 +2,8 @@ package hotel.booking.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by val on 01.03.2018.
@@ -35,6 +37,14 @@ public class Booking {
     @JoinColumn (name = "room_id", insertable = false, updatable = false)
     private Room room;
 
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable (name = "bookings_additional_services",
+            //foreign key for Booking in bookings_additional_services table
+            joinColumns = @JoinColumn (name = "booking_id"),
+            //foreign key for other side - AdditionalService in bookings_additional_services table
+            inverseJoinColumns = @JoinColumn (name = "additional_service_id"))
+    private List<AdditionalService> additionalServices = new ArrayList<AdditionalService>();
+
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
 
@@ -55,4 +65,7 @@ public class Booking {
 
     public Room getRoom() {return room;}
     public void setRoom(Room room) {this.room = room;}
+
+    public List<AdditionalService> getAdditionalServices() {return additionalServices;}
+    public void setAdditionalServices(List<AdditionalService> additionalServices) {this.additionalServices = additionalServices;}
 }

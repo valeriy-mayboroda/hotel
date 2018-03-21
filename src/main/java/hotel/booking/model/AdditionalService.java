@@ -1,6 +1,8 @@
 package hotel.booking.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by val on 01.03.2018.
@@ -19,6 +21,9 @@ public class AdditionalService {
 
     @Column (name = "price")
     private double price;
+
+    @ManyToMany(mappedBy = "additionalServices")
+    private List<Booking> additionalServices = new ArrayList<Booking>();
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}

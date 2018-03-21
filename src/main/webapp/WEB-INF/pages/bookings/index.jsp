@@ -42,6 +42,12 @@
                         </td>
                         <td><a href="<c:url value='/bookings/${booking.id}'/>">Show</a></td>
                     </tr>
+                    <c:forEach items="${booking.additionalServices}" var="additionalService">
+                        <tr>
+                            <td><c:out value="${additionalService.name}"/></td>
+                            <td><c:out value="${additionalService.price}"/></td>
+                        </tr>
+                    </c:forEach>
                 </c:forEach>
             </table>
         </c:if>

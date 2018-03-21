@@ -6,6 +6,5 @@
         <mapping class="hotel.booking.model.Room"/>
         <mapping class="hotel.booking.model.AdditionalService"/>
         <mapping class="hotel.booking.model.Booking"/>
-        <mapping class="hotel.booking.model.BookingAdditionalService"/>
     </session-factory>
 </hibernate-configuration>

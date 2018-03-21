@@ -1,9 +1,7 @@
 package hotel.booking.controller;
 
 import hotel.booking.model.Booking;
-import hotel.booking.service.BookingService;
-import hotel.booking.service.RoomService;
-import hotel.booking.service.UserService;
+import hotel.booking.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,18 +19,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BookingController {
     @Autowired(required = true)
     private BookingService bookingService;
-
     @Autowired(required = true)
     private UserService userService;
-
     @Autowired(required = true)
     private RoomService roomService;
+    @Autowired(required = true)
+    private AdditionalServiceService additionalServiceService;
 
     public void setBookingService(BookingService bookingService) {this.bookingService = bookingService;}
-
     public void setUserService(UserService userService) {this.userService = userService;}
-
     public void setRoomService(RoomService roomService) {this.roomService = roomService;}
+    public void setAdditionalServiceService(AdditionalServiceService additionalServiceService) {this.additionalServiceService = additionalServiceService;}
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getBookingsList(Model model) {
@@ -56,6 +53,7 @@ public class BookingController {
     public String getCreateBooking(Model model) {
         model.addAttribute("usersList", userService.getUsers());
         model.addAttribute("roomsList", roomService.getRooms());
+        model.addAttribute("additionalservicesList", additionalServiceService.getAdditionalServices());
         return "bookings/new";
     }
 
@@ -68,6 +66,8 @@ public class BookingController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String getUpdateBooking(@PathVariable("id") int id, Model model) {
         model.addAttribute("booking", this.bookingService.getBookingById(id));
+        model.addAttribute("usersList", userService.getUsers());
+        model.addAttribute("roomsList", roomService.getRooms());
         return "bookings/edit";
     }
 

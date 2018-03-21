@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
     <head>
@@ -50,6 +51,14 @@
                             <f:input path="date_end"/>
                         </td>
                     </tr>
+                    <c:if test="${!empty additionalservicesList}">
+                    <tr>
+                        <td>Additional Services:</td>
+                        <td>
+                            <f:checkboxes items="${additionalservicesList}" path="additionalServices" itemLabel="name"/>
+                        </td>
+                    </tr>
+                    </c:if>
                     <tr>
                          <td colspan="2">
                               <input type="submit" value="<spring:message text="Create new booking"/>"/>

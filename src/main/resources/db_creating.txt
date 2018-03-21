@@ -46,9 +46,13 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `hotel`.`bookings_additional_services` (
   `id` INT(7) NOT NULL AUTO_INCREMENT,
+  `booking_id` INT(7) NOT NULL,
   `additional_service_id` INT(7) NOT NULL,
-  `quantity` INT(2) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (booking_id, additional_service_id),
+  CONSTRAINT FK_BOOKINGS FOREIGN KEY (booking_id)
+    REFERENCES hotel.bookings (id),
+  CONSTRAINT FK_ADDITIONAL_SERVICES FOREIGN KEY (additional_service_id)
+    REFERENCES hotel.additional_services (id),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
