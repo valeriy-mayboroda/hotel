@@ -2,7 +2,6 @@ package hotel.booking.model;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,13 +36,38 @@ public class Booking {
     @JoinColumn (name = "room_id", insertable = false, updatable = false)
     private Room room;
 
-    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany (targetEntity = AdditionalService.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable (name = "bookings_additional_services",
             //foreign key for Booking in bookings_additional_services table
-            joinColumns = @JoinColumn (name = "booking_id"),
+            joinColumns = @JoinColumn (name = "booking_id", nullable = false, updatable = false),
             //foreign key for other side - AdditionalService in bookings_additional_services table
-            inverseJoinColumns = @JoinColumn (name = "additional_service_id"))
-    private List<AdditionalService> additionalServices = new ArrayList<AdditionalService>();
+            inverseJoinColumns = @JoinColumn (name = "additional_service_id", nullable = false, updatable = false))
+    private List<AdditionalService> additionalServices;
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == 0) ? 0 : id);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Booking))
+            return false;
+        Booking booking = (Booking) obj;
+        if (id == 0) {
+            if (booking.id != 0)
+                return false;
+        } else if (id!=booking.id)
+            return false;
+        return true;
+    }
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}

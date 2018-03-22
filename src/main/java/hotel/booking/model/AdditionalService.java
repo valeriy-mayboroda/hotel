@@ -1,8 +1,6 @@
 package hotel.booking.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by val on 01.03.2018.
@@ -22,8 +20,30 @@ public class AdditionalService {
     @Column (name = "price")
     private double price;
 
-    @ManyToMany(mappedBy = "additionalServices")
-    private List<Booking> additionalServices = new ArrayList<Booking>();
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == 0) ? 0 : id);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof AdditionalService))
+            return false;
+        AdditionalService additionalService = (AdditionalService) obj;
+        if (id == 0) {
+            if (additionalService.id != 0)
+                return false;
+        } else if (id != additionalService.id)
+            return false;
+        return true;
+    }
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}

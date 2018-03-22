@@ -55,7 +55,7 @@
                     <tr>
                         <td>Additional Services:</td>
                         <td>
-                            <f:checkboxes items="${additionalservicesList}" path="additionalServices" itemLabel="name"/>
+                            <f:checkboxes items="${additionalservicesList}" path="additionalServices" itemValue="id" itemLabel="name"/>
                         </td>
                     </tr>
                     </c:if>
